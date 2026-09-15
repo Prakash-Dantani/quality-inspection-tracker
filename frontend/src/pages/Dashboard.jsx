@@ -1,5 +1,6 @@
 import { Box, Container, Typography } from "@mui/material";
 import Summary from "../components/Summary";
+import InspectionTable from "../components/InspectionTable";
 
 const Dashboard = () => {
   return (
@@ -11,6 +12,7 @@ const Dashboard = () => {
           </Typography>
 
           <Summary />
+          <InspectionTable />
         </Box>
       </Container>
     </>

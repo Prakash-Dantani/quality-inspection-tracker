@@ -4,14 +4,15 @@ export const getSummary = async () => {
     const summary_response = await api.get("/dashboard");
     return summary_response.data;
 }
-export const getInspections = (params) => {
-    return api.get("/inspections", { params });
+export const getInspections = async (params) => {
+    const inspection_response = await api.get("/", { params });
+    return inspection_response.data;
 };
 
-export const createInspection = (data) => {
-    return api.post("/inspections", data);
+export const createInspection = async (data) => {
+    return await api.post("/", data);
 };
 
-export const resolveInspection = (id, data) => {
-    return api.patch(`/inspections/${id}/resolve`, data);
+export const resolveInspection = async (id, data) => {
+    return await api.patch(`/${id}/resolve`, data);
 };

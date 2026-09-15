@@ -2,17 +2,12 @@ import Grid from "@mui/material/Grid";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Box } from "@mui/system";
 import Alert from "@mui/material/Alert";
-import { useEffect } from "react";
 
 import SummaryCard from "./SummaryCard";
 import useSummary from "../hooks/useSummary";
 
 function Summary() {
-  const { summary, error, loading, fetchSummary } = useSummary();
-
-  useEffect(() => {
-    fetchSummary();
-  }, []);
+  const { summary, error, loading } = useSummary();
 
   if (loading) {
     return (
