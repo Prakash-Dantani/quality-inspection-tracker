@@ -1,9 +1,29 @@
-const { createInspectionRepository } = require("../repositories/inspection.repository");
+const { createInspectionRepository, findAllRepository, resolveInspectionRepository, findByIdRepository } = require("../repositories/inspection.repository");
 
 const createInspectionService = async (inspectionData) => {
     return await createInspectionRepository(inspectionData)
 }
 
+const getAllInspectionsService = async (filters) => {
+    return await findAllRepository(filters);
+};
+
+const resolveInspectionsService = async (requestObject) => {
+    const { id, resolution_note } = requestObject;
+    const inspection = await findByIdRepository(id);
+
+    if (!inspection) {
+        throw new ApiError(404, "Inspection not found");
+    }
+
+    if (inspection.status === "Resolved") {
+        throw new ApiError(409, "Inspection is already resolved");
+    }
+
+    return await resolveInspectionRepository(requestObject);
+};
+
+
 module.exports = {
-    createInspectionService,
+    createInspectionService, getAllInspectionsService, resolveInspectionsService
 };
