@@ -1,6 +1,6 @@
 const ApiResponse = require("../../utils/ApiResponse");
 const asyncHandler = require("../../utils/asyncHandler");
-const { createInspectionService, getAllInspectionsService, resolveInspectionsService } = require("../services/inspection.service")
+const { createInspectionService, getAllInspectionsService, resolveInspectionsService, dashboardService } = require("../services/inspection.service")
 
 const createInspection = asyncHandler(async (req, res, next) => {
 
@@ -45,8 +45,21 @@ const resolveInspection = asyncHandler(async (req, res) => {
 }
 )
 
+const viewDashboard = asyncHandler(async (req, res) => {
+    const dashboard = await dashboardService();
+
+    return res.status(200).json(
+        new ApiResponse(
+            200,
+            "Dashboard successfully view",
+            dashboard
+        )
+    );
+}
+)
+
 
 
 module.exports = {
-    createInspection, getAllInspections, resolveInspection
+    createInspection, getAllInspections, resolveInspection, viewDashboard
 };

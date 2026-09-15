@@ -1,5 +1,5 @@
 const { createInspectionSchema, resolveInspectionSchema } = require("../../validations/inspection.schema");
-const { createInspection, getAllInspections, resolveInspection } = require("../controllers/inspection.controller");
+const { createInspection, getAllInspections, resolveInspection, viewDashboard } = require("../controllers/inspection.controller");
 
 
 const express = require('express');
@@ -10,5 +10,6 @@ const inspectionRouter = express.Router();
 inspectionRouter.post('/', validate(createInspectionSchema), createInspection);
 inspectionRouter.get("/", getAllInspections);
 inspectionRouter.patch("/:id/resolve", validate(resolveInspectionSchema), resolveInspection);
+inspectionRouter.get("/dashboard", viewDashboard);
 
 module.exports = inspectionRouter;

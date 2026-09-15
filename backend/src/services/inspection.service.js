@@ -1,4 +1,4 @@
-const { createInspectionRepository, findAllRepository, resolveInspectionRepository, findByIdRepository } = require("../repositories/inspection.repository");
+const { createInspectionRepository, findAllRepository, resolveInspectionRepository, findByIdRepository, dashboardRepository } = require("../repositories/inspection.repository");
 
 const createInspectionService = async (inspectionData) => {
     return await createInspectionRepository(inspectionData)
@@ -23,7 +23,11 @@ const resolveInspectionsService = async (requestObject) => {
     return await resolveInspectionRepository(requestObject);
 };
 
+const dashboardService = async () => {
+    return await dashboardRepository();
+
+}
 
 module.exports = {
-    createInspectionService, getAllInspectionsService, resolveInspectionsService
+    createInspectionService, getAllInspectionsService, resolveInspectionsService, dashboardService
 };

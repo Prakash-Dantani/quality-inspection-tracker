@@ -98,7 +98,22 @@ const resolveInspectionRepository = async ({ id, resolution_note }) => {
     return rows[0];
 
 }
+const dashboardRepository = async () => {
+
+    const query = `SELECT
+                    COUNT(*) AS total,
+                    COUNT(*) FILTER (WHERE status = 'Open') AS open,
+                    COUNT(*) FILTER (WHERE status = 'Resolved') AS resolved,
+                    COUNT(*) FILTER (WHERE severity = 'Critical') AS critical,
+                    COUNT(*) FILTER (WHERE severity = 'Major') AS major,
+                    COUNT(*) FILTER (WHERE severity = 'Minor') AS minor
+                FROM arvind.inspections`;
+
+    const { rows } = await pool.query(query);
+
+    return rows[0];
+}
 
 module.exports = {
-    createInspectionRepository, findAllRepository, resolveInspectionRepository, findByIdRepository
+    createInspectionRepository, findAllRepository, resolveInspectionRepository, findByIdRepository, dashboardRepository
 }
