@@ -10,9 +10,11 @@ export const getInspections = async (params) => {
 };
 
 export const createInspection = async (data) => {
-    return await api.post("/", data);
+    const create_response = await api.post("/", data);
+    return create_response.data;
 };
 
 export const resolveInspection = async (id, data) => {
-    return await api.patch(`/${id}/resolve`, data);
+    const response = await api.patch(`/${id}/resolve`, data);
+    return response.data;
 };

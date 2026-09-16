@@ -1,7 +1,16 @@
-import { Button, Chip } from "@mui/material";
+import {
+  Box,
+  Button,
+  Chip,
+  IconButton,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+
 import dayjs from "dayjs";
 
-export const inpectionDTColumns = [
+export const getInspectionDTColumns = (onResolve) => [
   {
     field: "inspection_date",
     headerName: "Date",
@@ -64,15 +73,43 @@ export const inpectionDTColumns = [
     filterable: false,
     flex: 1,
 
-    renderCell: (params) => (
-      <Button
-        variant="contained"
-        size="small"
-        disabled={params.row.status === "Resolved"}
-        onClick={() => handleResolve(params.row)}
-      >
-        Resolve
-      </Button>
-    ),
+    renderCell: (params) => {
+      if (params.row.status === "Resolved") {
+        return (
+          <Tooltip
+            arrow
+            placement="left"
+            enterDelay={300}
+            title={
+              <Box sx={{ maxWidth: 280, p: 0.5 }}>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    whiteSpace: "pre-wrap",
+                    wordBreak: "break-word",
+                  }}
+                >
+                  {params.row.resolution_note || "No remarks available"}
+                </Typography>
+              </Box>
+            }
+          >
+            <IconButton color="success" size="small">
+              <VisibilityIcon fontSize="small" />
+            </IconButton>
+          </Tooltip>
+        );
+      }
+
+      return (
+        <Button
+          variant="contained"
+          size="small"
+          onClick={() => onResolve(params.row.id)}
+        >
+          Resolve
+        </Button>
+      );
+    },
   },
 ];

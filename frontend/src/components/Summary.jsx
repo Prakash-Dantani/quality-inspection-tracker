@@ -6,8 +6,8 @@ import Alert from "@mui/material/Alert";
 import SummaryCard from "./SummaryCard";
 import useSummary from "../hooks/useSummary";
 
-function Summary() {
-  const { summary, error, loading } = useSummary();
+function Summary({ summary, loading, error }) {
+  // const { summary, error, loading } = useSummary();
 
   if (loading) {
     return (

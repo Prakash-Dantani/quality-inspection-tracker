@@ -2,22 +2,44 @@ import { Alert, CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
 import { DataGrid } from "@mui/x-data-grid";
 
-import useInspection from "../hooks/useInspection";
-import { inpectionDTColumns } from "../utils/inspection.dt.column";
-import { useEffect, useState } from "react";
+import { getInspectionDTColumns } from "../utils/inspection.dt.column";
+
+import { useState } from "react";
 import FilterBar from "./FilterBar";
+import toast from "react-hot-toast";
+import { resolveInspection } from "../api/inspection.api";
 
-function InspectionTable() {
-  const { inspections, loading, error, fetchInspection } = useInspection();
-
+export function InspectionTable({ inspections, loading, error, onResolve }) {
   const [filters, setFilters] = useState({
     severity: "",
     status: "",
     machine_id: "",
   });
-  useEffect(() => {
-    fetchInspection(filters);
-  }, [filters]);
+
+  /* const handleResolve = async (id) => {
+    try {
+      const confirm = window.confirm(
+        "Are you sure you want to resolve this inspection?",
+      );
+
+      if (!confirm) return;
+
+      await resolveInspection(id);
+
+      toast.success("Inspection resolved successfully");
+
+      onResolved();
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message || "Failed to resolve inspection",
+      );
+    }
+  }; */
+  const handleResolve = (id) => {
+    onResolve(id);
+  };
+
+  const columns = getInspectionDTColumns(handleResolve);
 
   if (loading) {
     return (
@@ -42,7 +64,7 @@ function InspectionTable() {
       <FilterBar filters={filters} setFilters={setFilters} />
       <DataGrid
         rows={inspections}
-        columns={inpectionDTColumns}
+        columns={columns}
         pageSizeOptions={[5, 10, 20]}
         initialState={{
           pagination: {

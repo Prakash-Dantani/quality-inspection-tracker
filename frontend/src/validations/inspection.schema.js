@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { SEVERITIES, DEFECT_TYPES } from "../utils/inspection.constants";
 
 export const inspectionSchema = z.object({
     inspection_date: z.string().date().min(1, "Inspection date is required"),
@@ -8,12 +9,11 @@ export const inspectionSchema = z.object({
         .min(1, "Machine ID is required")
         .max(20, "Maximum 20 characters"),
 
-    defect_type: z
-        .string()
-        .min(1, "Defect Type is required")
-        .max(100),
+    defect_type: z.enum(DEFECT_TYPES, {
+        message: "Severity is required",
+    }),
 
-    severity: z.enum(["Critical", "Major", "Minor"], {
+    severity: z.enum(SEVERITIES, {
         message: "Severity is required",
     }),
 

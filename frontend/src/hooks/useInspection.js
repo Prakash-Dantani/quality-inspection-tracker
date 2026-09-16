@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getInspections } from '../api/inspection.api';
 
-const useInspection = () => {
+const useInspection = (autoFetch = true) => {
     const [inspections, setInspections] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -16,8 +16,11 @@ const useInspection = () => {
         } finally { setLoading(false) }
     }
     useEffect(() => {
-        fetchInspection();
+        if (autoFetch) {
+            fetchInspection();
+        }
     }, []);
+
     return { inspections, loading, error, fetchInspection }
 }
 
