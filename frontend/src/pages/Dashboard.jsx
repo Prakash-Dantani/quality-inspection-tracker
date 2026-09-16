@@ -1,8 +1,15 @@
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import Summary from "../components/Summary";
 import InspectionTable from "../components/InspectionTable";
+import { useState } from "react";
+import AddInspectionDialog from "../components/AddInspectionDialog";
 
 const Dashboard = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+
+  const handleClose = () => setOpen(false);
   return (
     <>
       <Container maxWidth="xl">
@@ -13,9 +20,15 @@ const Dashboard = () => {
 
           <Summary />
           <br />
-          <Button variant="contained" className="pull-right">
+          <Button
+            variant="contained"
+            className="pull-right"
+            onClick={handleOpen}
+          >
             Add Inspection
           </Button>
+
+          <AddInspectionDialog open={open} handleClose={handleClose} />
           <br />
           <InspectionTable />
         </Box>
