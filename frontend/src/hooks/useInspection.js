@@ -6,10 +6,10 @@ const useInspection = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const fetchInspection = async () => {
+    const fetchInspection = async (params = {}) => {
         try {
             setLoading(true);
-            const response = await getInspections();
+            const response = await getInspections(params);
             setInspections(response.data);
         } catch (error) {
             setError(error);

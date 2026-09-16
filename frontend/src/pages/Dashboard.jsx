@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import Summary from "../components/Summary";
 import InspectionTable from "../components/InspectionTable";
 
@@ -12,6 +12,11 @@ const Dashboard = () => {
           </Typography>
 
           <Summary />
+          <br />
+          <Button variant="contained" className="pull-right">
+            Add Inspection
+          </Button>
+          <br />
           <InspectionTable />
         </Box>
       </Container>

@@ -1,21 +1,24 @@
-import {
-  Paper,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  Typography,
-  Alert,
-  CircularProgress,
-  TableContainer,
-} from "@mui/material";
+import { Alert, CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
+import { DataGrid } from "@mui/x-data-grid";
 
 import useInspection from "../hooks/useInspection";
+import { inpectionDTColumns } from "../utils/inspection.dt.column";
+import { useEffect, useState } from "react";
+import FilterBar from "./FilterBar";
 
 function InspectionTable() {
-  const { inspections, loading, error } = useInspection();
+  const { inspections, loading, error, fetchInspection } = useInspection();
+
+  const [filters, setFilters] = useState({
+    severity: "",
+    status: "",
+    machine_id: "",
+  });
+  useEffect(() => {
+    fetchInspection(filters);
+  }, [filters]);
+
   if (loading) {
     return (
       <Box
@@ -33,58 +36,24 @@ function InspectionTable() {
   if (error) {
     return <Alert severity="error">Failed to load Inspection table.</Alert>;
   }
+
   return (
-    // <Paper sx={{ mt: 4 }}>
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>
-              <strong>Date</strong>
-            </TableCell>
-            <TableCell>
-              <strong>Machine ID</strong>
-            </TableCell>
-            <TableCell>
-              <strong>Defect Type</strong>
-            </TableCell>
-            <TableCell>
-              <strong>Severity</strong>
-            </TableCell>
-            <TableCell>
-              <strong>Status</strong>
-            </TableCell>
-            <TableCell>
-              <strong>Remarks</strong>
-            </TableCell>
-            <TableCell align="center">
-              <strong>Action</strong>
-            </TableCell>
-          </TableRow>
-        </TableHead>
-
-        <TableBody>
-          {inspections.map((inspection) => (
-            <TableRow key={inspection.id}>
-              <TableCell>{inspection.inspection_date}</TableCell>
-
-              <TableCell>{inspection.machine_id}</TableCell>
-
-              <TableCell>{inspection.defect_type}</TableCell>
-
-              <TableCell>{inspection.severity}</TableCell>
-
-              <TableCell>{inspection.status}</TableCell>
-
-              <TableCell>{inspection.remarks}</TableCell>
-
-              <TableCell></TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      {/* </Paper> */}
-    </TableContainer>
+    <>
+      <FilterBar filters={filters} setFilters={setFilters} />
+      <DataGrid
+        rows={inspections}
+        columns={inpectionDTColumns}
+        pageSizeOptions={[5, 10, 20]}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              page: 0,
+              pageSize: 5,
+            },
+          },
+        }}
+      />
+    </>
   );
 }
 
