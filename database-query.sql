@@ -1,5 +1,3 @@
--- database.queries.sql
-
 CREATE DATABASE quality_tracker;
 
 CREATE SCHEMA arvind;

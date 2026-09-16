@@ -6,6 +6,7 @@ import AddInspectionDialog from "../components/AddInspectionDialog";
 import useSummary from "../hooks/useSummary";
 import useInspection from "../hooks/useInspection";
 import ResolveInspectionDialog from "../components/ResolveInspectionDialog";
+import Header from "../components/Header";
 
 const Dashboard = () => {
   const {
@@ -65,9 +66,7 @@ const Dashboard = () => {
     <>
       <Container maxWidth="xl">
         <Box py={4}>
-          <Typography variant="h4" fontWeight={700} gutterBottom>
-            Quality Inspection Tracker
-          </Typography>
+          <Header />
 
           <Summary
             summary={summary}
@@ -89,6 +88,8 @@ const Dashboard = () => {
             loading={inspectionLoading}
             error={inspectionError}
             onResolve={handleResolveOpen}
+            filters={filters}
+            setFilters={setFilters}
           />
 
           {/* Add and Resolve dialog start */}
