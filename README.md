@@ -164,7 +164,7 @@ This ensures consistent validation rules across the application and prevents inv
 
 ## Database
 
-Create PostgreSQL database
+Create PostgreSQL database name with "quality_tracker"
 
 ```
 database-query.sql (only Database and table structure)
@@ -192,7 +192,7 @@ npm install
 Create `.env`
 
 ```env
-PORT=5000
+PORT=8080
 
 DB_HOST=localhost
 DB_PORT=5432
@@ -241,37 +241,21 @@ npm run dev
 
 ## Screenshots
 
-Add application screenshots here.
+## ![Dashboard](image.png)
 
----
+## ![Add Inspection](image-1.png)
+
+## ![Resolve Inspection Dialog](image-2.png)
+
+## Mobile View (390px)
+
+![Dashboard](image-3.png)
+![Add Button And Filter Utility](image-4.png)
+![View Inspection In Card](image-5.png)
 
 ## Author
 
 **Prakash Dantani**
 
 Senior Full Stack Developer
-
-```
-
----
-
-## ⭐ One suggestion
-
-Before submitting, add **3–4 screenshots**:
-
-```
-
-README
-
-Dashboard
-
-Add Inspection Dialog
-
-Resolve Inspection Dialog
-
-Mobile View (390px)
-
-```
-
-A reviewer usually looks at screenshots before running the project, and they create a strong first impression.
-```
+dantaniprakash08@gmail.com
