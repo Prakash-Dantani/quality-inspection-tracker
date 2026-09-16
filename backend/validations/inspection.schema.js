@@ -5,7 +5,8 @@ const createInspectionSchema = z.object({
 
     machine_id: z.string()
         .trim()
-        .min(1, "Machine ID is required"),
+        .min(1, "Machine ID is required")
+        .max(100),
 
     defect_type: z.enum([
         "Weave Defect",
@@ -29,6 +30,7 @@ const resolveInspectionSchema = z.object({
         .string()
         .trim()
         .min(5, "Resolution note must be at least 5 characters.")
+        .max(500, "Resolution note be greater than 500 characters.")
 });
 
 module.exports = {

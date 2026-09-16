@@ -77,7 +77,7 @@ const findByIdRepository = async (id) => {
 
     const { rows } = await pool.query(query, [id]);
 
-    return rows[0];
+    return rows;
 
 };
 

@@ -1,3 +1,4 @@
+const ApiError = require("../../utils/ApiError");
 const { createInspectionRepository, findAllRepository, resolveInspectionRepository, findByIdRepository, dashboardRepository } = require("../repositories/inspection.repository");
 
 const createInspectionService = async (inspectionData) => {
@@ -10,6 +11,7 @@ const getAllInspectionsService = async (filters) => {
 
 const resolveInspectionsService = async (requestObject) => {
     const { id, resolution_note } = requestObject;
+    console.log(id, resolution_note);
     const inspection = await findByIdRepository(id);
 
     if (!inspection) {
