@@ -1,5 +1,5 @@
-CREATE DATABASE quality_tracker;
-ALTER DATABASE quality_tracker OWNER TO postgres;
+-- CREATE DATABASE quality_tracker;
+-- ALTER DATABASE quality_tracker OWNER TO postgres;
 
 CREATE SCHEMA arvind;
 ALTER SCHEMA arvind OWNER TO postgres;

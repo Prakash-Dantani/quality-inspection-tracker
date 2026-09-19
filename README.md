@@ -177,7 +177,7 @@ Execute the provided SQL script to create the inspections table with testing dat
 ### Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Prakash-Dantani/quality-inspection-tracker
 ```
 
 ---

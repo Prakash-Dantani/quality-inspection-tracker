@@ -71,7 +71,7 @@ const findByIdRepository = async (id) => {
 
     const query = `
         SELECT *
-        FROM inspections
+        FROM arvind.inspections
         WHERE id = $1
     `;
 
