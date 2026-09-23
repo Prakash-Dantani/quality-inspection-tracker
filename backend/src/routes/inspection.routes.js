@@ -1,4 +1,4 @@
-const { createInspectionSchema, resolveInspectionSchema } = require("../../validations/inspection.schema");
+const { createInspectionSchema, resolveInspectionSchema } = require("../validations/inspection.schema");
 const { createInspection, getAllInspections, resolveInspection, viewDashboard } = require("../controllers/inspection.controller");
 
 

@@ -1,5 +1,5 @@
-const ApiResponse = require("../../utils/ApiResponse");
-const asyncHandler = require("../../utils/asyncHandler");
+const ApiResponse = require("../utils/ApiResponse");
+const asyncHandler = require("../utils/asyncHandler");
 const { createInspectionService, getAllInspectionsService, resolveInspectionsService, dashboardService } = require("../services/inspection.service")
 
 const createInspection = asyncHandler(async (req, res, next) => {

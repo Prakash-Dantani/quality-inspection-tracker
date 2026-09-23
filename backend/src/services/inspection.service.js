@@ -1,4 +1,4 @@
-const ApiError = require("../../utils/ApiError");
+const ApiError = require("../utils/ApiError");
 const { createInspectionRepository, findAllRepository, resolveInspectionRepository, findByIdRepository, dashboardRepository } = require("../repositories/inspection.repository");
 
 const createInspectionService = async (inspectionData) => {
